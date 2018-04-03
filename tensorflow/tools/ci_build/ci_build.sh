@@ -126,9 +126,11 @@ echo ""
 
 # Build the docker container.
 echo "Building container (${DOCKER_IMG_NAME})..."
-docker build -t ${DOCKER_IMG_NAME} \
-    -f "${DOCKERFILE_PATH}" "${DOCKER_CONTEXT_PATH}"
-
+#docker build -t ${DOCKER_IMG_NAME} \
+#    -f "${DOCKERFILE_PATH}" "${DOCKER_CONTEXT_PATH}"
+echo $PATH
+whoami
+docker build
 # Check docker build status
 if [[ $? != "0" ]]; then
   die "ERROR: docker build failed. Dockerfile is at ${DOCKERFILE_PATH}"
