@@ -264,7 +264,7 @@ function set_script_variable() {
 # Process container type
 if [[ ${CTYPE} == "cpu" ]] || [[ ${CTYPE} == "debian.jessie.cpu" ]]; then
   :
-elif [[ ${CTYPE} == "gpu" ]]; then
+elif [[ ${CTYPE} == "gpu" ]] || [[ ${CTYPE} == "gpu.ppc64el" ]]; then
   set_script_variable TF_NEED_CUDA 1
 
   if [[ $TF_CUDA_CLANG == "1" ]]; then
@@ -427,7 +427,8 @@ if [[ ${TF_BUILD_IS_PIP} == "no_pip" ]] ||
     # CPU only command, fully parallel.
     NO_PIP_MAIN_CMD="${MAIN_CMD} ${BAZEL_CMD} ${OPT_FLAG} ${EXTRA_ARGS} -- "\
 "${BAZEL_TARGET}"
-  elif [[ ${CTYPE} == "gpu" ]]; then
+  elif [[ ${CTYPE} == "gpu" ]] || \
+       [[ ${CTYPE} == "gpu.ppc64el" ]]; then
     # GPU only command, run as many jobs as the GPU count only.
     NO_PIP_MAIN_CMD="${BAZEL_CMD} ${OPT_FLAG} "\
 "--local_test_jobs=${TF_GPU_COUNT} "\
