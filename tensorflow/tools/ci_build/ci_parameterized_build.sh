@@ -415,6 +415,10 @@ fi
 EXTRA_ARGS="${EXTRA_ARGS} --distinct_host_configuration=false"
 
 # Process PIP install-test option
+if [[ ! -z "${TF_BAZEL_BUILD_ONLY}" ]] &&
+   [[ "${TF_BAZEL_BUILD_ONLY}" != "0" ]];then 
+  BAZEL_CMD=${BAZEL_BUILD_ONLY_CMD}
+fi
 if [[ ${TF_BUILD_IS_PIP} == "no_pip" ]] ||
    [[ ${TF_BUILD_IS_PIP} == "both" ]]; then
   # Process optional bazel target override
