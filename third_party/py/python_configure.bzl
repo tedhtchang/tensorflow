@@ -254,7 +254,7 @@ def _get_python_import_lib_name(repository_ctx, python_bin):
 def _get_numpy_include(repository_ctx, python_bin):
   """Gets the numpy include path."""
   return _execute(repository_ctx,
-                  [python_bin, "-c",
+                  [python_bin, "-vc",
                    'from __future__ import print_function;' +
                    'import numpy;' +
                    ' print(numpy.get_include());'],
